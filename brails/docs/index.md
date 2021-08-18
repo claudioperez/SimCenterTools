@@ -1,3 +1,7 @@
+---
+title: Miami FL dataset
+...
+
 
 ---------------
 
@@ -15,14 +19,14 @@ The `brails.CityBuilder` class was used to obtain a collection of images from th
 | Kendall      |   1000    |
 | **Total**    | **4081**  |
 
-Of the roughly 4000 "Top view" images collected with `brails.CityBuilder`,
+Of the roughly 4000 top view images collected with `brails.CityBuilder`,
 all were reviewed, 2331 were manually classified, and of these **1310** 
 were selected for use in the roof validation study.
 
 
-| Label         | Count    | Notes                   |
-|---------------|:--------:|-------------------------|
-| gabled        |   747    | Not including `gabled*` |
+| Label         | No. Images |
+|---------------|:--------:|
+| gabled        |   747    | 
 | hipped        |   452    |
 | flat          |   111    |
 | **total**     | **1310** |
@@ -36,11 +40,13 @@ severely obstructed images from the data set resulting in about $1900$
 images against which the `brails.modules.NFloorDetector` and 
 `brails.modules.OccupancyClassifier` models are tested. 
 
+\pagebreak
+
 # Model Summaries
 
 ## Roof Classifier
 
-![Normalized confusion matrices](roof-conf.png)
+![Normalized confusion matrices for roof predictions](roof-conf.png)
 
 The particular model used for prediction was `rooftype_ResNet50_V0.2`.
 
@@ -48,8 +54,8 @@ The model correctly identified about $30$ % of the gabled roofs in the dataset.
 Of the $262$ *predicted* gabled roofs, $94$ % of these were truly gabled.
 
 If a model says a roof is gabled, it is probably right. However, for any
-gabled house in particular, its chances of being correctly identified as such
-are not great.
+gabled structure in particular, its chances of being correctly identified
+as such are not great.
 
 If the model says a roof is hipped, there is a very strong chance that it is
 really something else. However, because most roofs will be classified as hipped,
@@ -59,15 +65,37 @@ all true hips are likely to be identified as such.
 
 ![Number-of-floors model confusion matrix](floors-conf.png)
 
-
 ## Occupancy
-
 
 ![Occupancy model confusion matrix](occupancy-conf.png)
 
 
+\pagebreak
+
+# Conclusions
+
+The image collections for the occupancy and floor models where not nearly
+as refined as that of the roof study. The poor performance of these models
+is largely due to the poor quality of these images for the task. These
+models may be very powerful, but their true utility may ultimately be limited
+by the abscence of image data which is fit for such tasks.
+
+Roof shape prediction appears to be the most tractable problem targeted by the
+BRAILS package for a few reasons:
+
+- Top-view images that can be readily obtained through Google
+  appear better suited for image recognition applications than
+  similarly obtained street-view images.
+- The information produced by the occupancy and floor models
+  can typically be obtained through simpler and far more
+  robust means.
+
+However, the occupancy and floor models can still be extremely useful in
+alternative applications.
 
 \pagebreak
+
+<!--
 
 # To Do
 
@@ -78,6 +106,7 @@ Validation
 Models/ Features
 
 - Identify/filter out 
+-->
 
 # Appendix
 
