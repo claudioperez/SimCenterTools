@@ -1,0 +1,5 @@
+nFloorPredict_x*.csv
+*.pth
+out/
+
+.ipynb_checkpoints/
